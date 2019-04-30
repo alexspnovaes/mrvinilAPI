@@ -1,8 +1,8 @@
 ﻿using Shared.Command;
+using Shared.Command.Interfaces;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-namespace Domain.Command
+namespace Domain.Command.Inputs
 {
     public class NewBasket : IMrVinilCommand
     {

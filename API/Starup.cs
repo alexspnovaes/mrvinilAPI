@@ -10,9 +10,8 @@ using ExternalServices.Services;
 using Domain.Interfaces.Services;
 using Domain.Services;
 using Swashbuckle.AspNetCore.Swagger;
-using System.Collections.Generic;
+using FluentValidation.AspNetCore;
 using Data.Transaction;
-using Domain.Command;
 using Domain.Command.Results;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -21,6 +20,9 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using API.Security;
 using Microsoft.Extensions.Logging;
 using System;
+using Domain.Command.Inputs;
+using Shared.Notifications;
+using Domain.Entities.Validators;
 
 namespace API
 {
@@ -39,7 +41,7 @@ namespace API
             Configuration = configuration;
         }
 
-       
+
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -86,13 +88,16 @@ namespace API
             services.AddTransient<ClientHandler, ClientHandler>();
             services.AddTransient<OrderHandler, OrderHandler>();
             services.AddTransient<OrderCashBackHandler, OrderCashBackHandler>();
+            services.AddTransient<DomainNotificationHandler, DomainNotificationHandler>();
+
+            services.AddTransient<ClientValidator, ClientValidator>();
 
             services.AddTransient<AuthenticateUserCommand, AuthenticateUserCommand>();
             services.AddTransient<NewClient, NewClient>();
             services.AddTransient<NewBasket, NewBasket>();
             services.AddTransient<NewDisk, NewDisk>();
             services.AddTransient<NewOrder, NewOrder>();
-            services.AddTransient<NewOrderItem, NewOrderItem>();            
+            services.AddTransient<NewOrderItem, NewOrderItem>();
 
             services.AddTransient<ClientResult, ClientResult>();
             services.AddTransient<OrderResult, OrderResult>();
@@ -102,28 +107,6 @@ namespace API
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            //app.UseSwagger((c) =>
-            //{
-            //    //Tratamento para setar o basepath no Swagger.
-            //    string basepath = "/api/v1";
-            //    c.PreSerializeFilters.Add((swaggerDoc, httpReq) => swaggerDoc.BasePath = basepath);
-
-            //    c.PreSerializeFilters.Add((swaggerDoc, httpReq) => {
-            //        IDictionary<string, PathItem> paths = new Dictionary<string, PathItem>();
-            //        foreach (var path in swaggerDoc.Paths)
-            //        {
-            //            paths.Add(path.Key.Replace(basepath, ""), path.Value);
-            //        }
-
-            //        swaggerDoc.Paths = paths;
-            //    });
-            //});
-
-            //app.UseSwaggerUI(cfg =>
-            //{
-            //    cfg.SwaggerEndpoint("/swagger/v1/swagger.json", "MrVinil API - v1");
-            //});
-
             loggerFactory.AddConsole();
 
             if (env.IsDevelopment())

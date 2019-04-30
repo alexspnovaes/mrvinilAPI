@@ -1,7 +1,7 @@
 ﻿using Shared.Command;
 using System;
 
-namespace Domain.Command
+namespace Domain.Command.Inputs
 {
     public class NewOrderItem 
     {

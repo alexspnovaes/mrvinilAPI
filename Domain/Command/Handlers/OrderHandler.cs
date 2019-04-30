@@ -1,14 +1,12 @@
-﻿using Domain.Command.Results;
+﻿using Domain.Command.Inputs;
+using Domain.Command.Results;
 using Domain.Entities;
 using Domain.Interfaces;
 using Domain.Interfaces.Services;
 using FluentValidator;
 using Shared.Command;
-using System;
+using Shared.Command.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Command.Handlers
 {

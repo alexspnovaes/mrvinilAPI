@@ -7,7 +7,7 @@ using System.Security.Principal;
 using System.Threading.Tasks;
 using API.Security;
 using Data.Transaction;
-using Domain.Command;
+using Domain.Command.Inputs;
 using Domain.Entities;
 using Domain.Interfaces;
 using FluentValidator;
@@ -16,17 +16,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Shared.Notifications;
 
 namespace API.Controllers
-{    
+{
     public class AccountController : BaseController
     {
         private Client _client;
         private readonly IClientRepository _repository;
         private readonly TokenOptions _tokenOptions;
         private readonly JsonSerializerSettings _serializerSettings;
-
-        public AccountController(IOptions<TokenOptions> jwtOptions, IUnitOfWork uow, IClientRepository repository) : base(uow)
+        private readonly DomainNotificationHandler _domainNotificationHandler;
+        public AccountController(IOptions<TokenOptions> jwtOptions, 
+            IUnitOfWork uow, 
+            IClientRepository repository) : base(uow)
         {
             _repository = repository;
             _tokenOptions = jwtOptions.Value;
@@ -44,12 +47,12 @@ namespace API.Controllers
         [Route("v1/authenticate")]
         public async Task<IActionResult> Post([FromForm] AuthenticateUserCommand command)
         {
-            if (command == null)
-                return await Response(null, new List<Notification> { new Notification("User", "Usuário ou senha inválidos") });
+            //if (command == null)
+            //    return await Response(null, new List<Notification> { new Notification("User", "Usuário ou senha inválidos") });
 
             var identity = await GetClaims(command);
-            if (identity == null)
-                return await Response(null, new List<Notification> { new Notification("User", "Usuário ou senha inválidos") });
+            //if (identity == null)
+            //    return await Response(null, new List<Notification> { new Notification("User", "Usuário ou senha inválidos") });
 
             var claims = new[]
             {

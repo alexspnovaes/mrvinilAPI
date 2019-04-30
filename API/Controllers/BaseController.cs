@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.Results;
+using Shared.Notifications;
 
 namespace API.Controllers
 {
@@ -13,15 +15,14 @@ namespace API.Controllers
 
         private readonly IUnitOfWork _uow;
 
-
         public BaseController(IUnitOfWork uow)
         {
             _uow = uow;
         }
 
-        public async Task<IActionResult> Response(object result, IEnumerable<Notification> notificacaoes)
+        public async Task<IActionResult> Response(object result, ValidationResult notificacaoes)
         {
-            if (!notificacaoes.Any())
+            if (notificacaoes.IsValid)
             {
                 try
                 {

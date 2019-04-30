@@ -1,6 +1,5 @@
-﻿using Domain.Command;
-using Domain.Command.Handlers;
-using Domain.Command.Results;
+﻿using Domain.Command.Handlers;
+using Domain.Command.Inputs;
 using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;

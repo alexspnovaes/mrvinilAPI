@@ -5,19 +5,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Command.Inputs;
+using Domain.Interfaces;
+using Moq;
 
 namespace Domain.Entities.Tests
 {
+   
     [TestClass()]
     public class ClientTests
     {
-        //[TestMethod()]
-        //[TestCategory("Client")]
-        //public void NewClientWithAllParams()
-        //{
-        //    Client cli = new Client("test", "12345678911");
-        //    Assert.IsNotNull(cli);
-        //}
+        private Mock<IClientRepository> _mock;
+
+        [TestMethod()]
+        [TestCategory("Client")]
+        public void NewClientWithAllParams()
+        {
+            _mock = new Mock<IClientRepository>();
+            Client cli = new Client("alexandre", "testealex", "alexandresp_novaes@hotmail.com", "123456", "35718362866");
+
+            _mock.Setup(m => m.Add(cli));
+
+            //Assert.IsTrue(cli.IsValid(_clientRepository));
+        }
 
 
         //[TestMethod()]

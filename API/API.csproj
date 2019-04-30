@@ -20,6 +20,8 @@
   
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
+    <PackageReference Include="FluentValidation" Version="8.3.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.3.0" />
     <PackageReference Include="FluentValidator" Version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="1.1.1" />

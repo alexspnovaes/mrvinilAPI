@@ -1,4 +1,5 @@
-﻿using Domain.Command.Results;
+﻿using Domain.Command.Inputs;
+using Domain.Command.Results;
 using Domain.Entities;
 using Domain.Interfaces;
 using Domain.Interfaces.Services;

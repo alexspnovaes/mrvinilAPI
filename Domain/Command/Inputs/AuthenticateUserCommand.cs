@@ -1,6 +1,6 @@
-﻿using Shared.Command;
+﻿using Shared.Command.Interfaces;
 
-namespace Domain.Command
+namespace Domain.Command.Inputs
 { 
     public class AuthenticateUserCommand : IMrVinilCommand
     {

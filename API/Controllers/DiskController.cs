@@ -1,6 +1,4 @@
-﻿using Domain.Command;
-using Domain.Command.Handlers;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +8,7 @@ using System.Collections.Generic;
 
 namespace API.Controllers
 {
-    
+
     [ApiController]
     public class DiskController : ControllerBase
     {
