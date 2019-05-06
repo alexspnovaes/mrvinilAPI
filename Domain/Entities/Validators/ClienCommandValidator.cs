@@ -21,9 +21,9 @@ namespace Domain.Entities.Validators
             RuleFor(x => x.UserName)
                 .NotEmpty().WithMessage("Necessário informa um nome de usuário")
                 .Length(6, 30).WithMessage("O nome de usuário deve ter no mínimo 3 caracteres e no máximo 30");
-            RuleFor(x => x.UserName)
+            RuleFor(x => x.Clienteuniqueid)
                 .NotEmpty().WithMessage("Necessário informa um nome de usuário")
-                .Length(11).WithMessage("O CPF deve ter 9 caracteres");
+                .Length(11).WithMessage("O CPF deve ter 11 caracteres");
             RuleFor(x => x.Password)
                 .NotEmpty().WithMessage("Necessário informa a senha")
                 .Length(6, 100).WithMessage("A senha deve ter no mínimo 6 caracteres e no máximo 100");
